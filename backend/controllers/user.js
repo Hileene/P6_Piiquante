@@ -1,6 +1,9 @@
 //IMPORTATION DU PACKAGE DE CRYPTAGE
 const bcrypt = require('bcrypt');
 
+//IMPORTATION DU PACKAGE D'ENCODAGE DU TOKEN (PERMET DE CRÉER DES TOKEN ET DE LES VÉRIFIER)
+const jwt = require('jsonwebtoken');
+
 //IMPORTATION DU MODELE USER
 const User = require('../models/User');
 
@@ -32,5 +35,32 @@ exports.signup = ( req, res, next ) => {
 
 // Cette fonction est pour connecter des utilisateurs existants
 exports.login = ( req, res, next ) => {
+     // Vérifie si l'utilisateur existe dans note base de donnée
+     User.findOne({ email: req.body.email })
+     .then(user => {
+         if (!user) {
+          // Erreur 401 Unauthorized
+             return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});// messsage volontairement vage pour ne pas divulger si un utilisateur est inscrit sur le site
+         }
+         // Compare le mot de passe inscrit par l'utilisateur et celui de la base de donnée
+         bcrypt.compare(req.body.password, user.password)
+             .then(valid => {
+                 if (!valid) {
+                     return res.status(401).json({ message: 'Paire login/mot de passe incorrecte' });
+                 }
+                 res.status(200).json({
+                     userId: user._id,
+                     //token: "TOKEN"
+                     //Permet d'authentifier une requête
+                     token: jwt.sign(
+                      { userId: user._id },
+                      'RANDOM_TOKEN_SECRET',
+                      { expiresIn: '24h' }
+                  )
+                 });
+             })
+             .catch(error => res.status(500).json({ error }));
+     })
+     .catch(error => res.status(500).json({ error }));
 
-}
+};
