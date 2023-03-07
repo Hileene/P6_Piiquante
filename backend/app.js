@@ -3,6 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
+//IMPORTATION DES ROUTER
+const userRoutes = require('./routes/user');
+
+
 //CONNECTION DE MON API A MON CLUSTER MONGODB
 mongoose.connect('mongodb+srv://aline_bb:MdJxgNYGVWdDY6n8@cluster0.jj6ina4.mongodb.net/?retryWrites=true&w=majority',
 { useNewUrlParser: true,
@@ -23,6 +27,9 @@ app.use((req, res, next) => {
 //Pour analyser le corps de la requête
   app.use(express.json());
   
+
+  //POUR ENREGISTER LES ROUTER
+  app.use('/api/auth', userRoutes);
 
 
 
