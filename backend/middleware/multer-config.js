@@ -16,12 +16,12 @@ const storage = multer.diskStorage({
         callback(null, 'images')
     },
     filename: (req, file, callback) => {
-        //ici on va générer le nouveau nom du fichier
+        //ici on va générer le nouveau nom du fichier (partie avant l'extension)
         //avec "split" on va remplacer les espaces par des underscores
         const name = file.originalname.split(' ').join('_')
         //maintenant il faut appliquer une extension au fichier grâce à son mime type
         const extension = MIME_TYPES[file.mimetype]
-        //appel du callback et cration du filename en entier + time stamp
+        //appel du callback et création du filename en entier + time stamp(pour le rendre le plus unique possible)
         callback(null, name + Date.now() +'.' + extension);
 
     }
