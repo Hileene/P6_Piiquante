@@ -14,22 +14,22 @@ exports.getAllSauces = (req, res, next) => {
 };
 
 //Ici on exporte un fonction appeler "createSauce" pour la création d'un objet sauce
+//d'abord parser l'objet requête car l'ojet va nous etre envoyé sous forme json mais en chaîne de caractères
 exports.createSauce = (req, res, next) => {
-    //Retire le champs id du frontend car il sera généré automatiquement par MongoDB
-    delete req.body._id;
-    //Création d'une nouvelle instance du modèle Sauce
+    const sauceObject = JSON.parse(req.body.sauce);
+    //on supprime deux champs
+    delete sauceObject._id;
+    delete sauceObject._userId; //ne pas faire confiance au client, utiliser ici le userId tu token
     const sauce = new Sauce({
-        // ici utilisation de l'opérateur spread(...) qui copie les champs qui sont dans le body de la request
-        ...req.body
+        ...sauceObject,
+        userId: req.auth.userId,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`//on génère l'url de l'image nous-même
     });
-    //Enregistrer sauce dans la base de donnée on va appeler la méthode save de la base de donné
-    // On va ensuite retourner une promise
-    // à l'intérieur du then il faut renvoyer une réponse au frontend sinon on aura l'expiration de la reqête
-    
+    // Enregistrer cette sauce dans la base de donnée
     sauce.save()
-        .then(() => res.status(201).json({ message: 'Sauce enregistré !' }))
-        .catch(error => res.status(400).json({ error }));
-};
+    .then(() => { res.status(201).json({message: 'Sauce enregistré !'})})
+    .catch(error => { res.status(400).json( { error })})
+ };
 
 //Ici on exporte un fonction appeler "getOneSauce" pour récupérer une sauce
 exports.getOneSauce = (req, res, next) => {
