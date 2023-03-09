@@ -1,7 +1,9 @@
 //IMPORTATYION DU FRAMEWORK EXPRESS
 const express = require('express');
-const auth = require('../middleware/auth');
 const router = express.Router();
+const auth = require('../middleware/auth');
+//importation du multer pour télécharger des fichiers images
+const multer = require('../middleware/multer-config');
 
 // Ici on importe la logique métier avec stuffCtrl
 const sauceCtrl = require('../controllers/sauce');
@@ -13,7 +15,7 @@ const sauceCtrl = require('../controllers/sauce');
 router.get('/', auth,sauceCtrl.getAllSauces);
 //Pour créer/publier une sauce
 //en ajoutant multer le format de la requête à changer dc aller dans controllers
-router.post('/', auth, sauceCtrl.createSauce );
+router.post('/', auth, multer, sauceCtrl.createSauce );
 //Pour récupérer une sauce
 // le ":id" indique a express que cette partie de la route est dynamique
 router.get('/:id', auth,  sauceCtrl.getOneSauce)
