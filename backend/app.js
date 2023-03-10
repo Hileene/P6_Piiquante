@@ -35,10 +35,10 @@ app.use(express.json());
 
 //POUR ENREGISTER LES ROUTER
 app.use('/api/auth', userRoutes);
-app.use('/api/sauces', sauceRoutes);
 //on récupère le répertoire dans lequel se trouve notre serveur et y concaténer le répertoire image
 //pour obtenir le chemin complet sur le disque.
 app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/sauces', sauceRoutes);
 
 
 
