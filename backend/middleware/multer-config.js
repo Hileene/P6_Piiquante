@@ -23,10 +23,7 @@ const storage = multer.diskStorage({
         const extension = MIME_TYPES[file.mimetype]
         //appel du callback et création du filename en entier + time stamp(pour le rendre le plus unique possible)
         callback(null, name + Date.now() +'.' + extension);
-
     }
-
-
 });
 
 // Exportation de multer
