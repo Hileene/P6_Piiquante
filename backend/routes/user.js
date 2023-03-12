@@ -15,7 +15,7 @@ const limiter = rateLimit({
 
 const signupLimiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 heure
-    max: 5, // Ce bloque après 5 requêtes
+    max: 5, // Se bloque après 5 requêtes
     message:
       "Too many accounts created from this IP, please try again after an hour",
   });
