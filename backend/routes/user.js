@@ -1,7 +1,10 @@
 //CONFIGURATION DES ROUTES
 const express = require('express');
-//CRÉATION DU ROUTER AVEC LA FONCTION ROUTER D'EXPRESS
+//Création du router
 const router = express.Router();
+//Importation du middleware pour sécuriser les mots de passe
+const password = require('../middleware/password');
+
 const rateLimit = require("express-rate-limit");
 const userCtrl = require('../controllers/user');
 
@@ -23,7 +26,7 @@ const signupLimiter = rateLimit({
 
 
 // ICI ON UTILISE DES ROUTES POST CAR LE FRONTEND VA AUSSI ENVOYER DES INFOS(EMAIL ET PASSWORD)
-router.post('/signup', signupLimiter, userCtrl.signup);
+router.post('/signup', password, signupLimiter, userCtrl.signup);
 router.post('/login', limiter, userCtrl.login);
 
 
