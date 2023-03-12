@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 // On rajoute mongoose-unique-validator comme plugin à notre schéma
 const uniqueValidator = require('mongoose-unique-validator');
@@ -8,6 +9,7 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
 });
 
+userSchema.plugin(mongodbErrorHandler);
 //On va appliquer le validator au schéma avant d'en faire un model
 // on va appeler la méthode plugin
 userSchema.plugin(uniqueValidator);
