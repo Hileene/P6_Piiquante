@@ -35,12 +35,12 @@ exports.signup = ( req, res, next ) => {
 
 // Cette fonction est pour connecter des utilisateurs existants
 exports.login = ( req, res, next ) => {
-     // Vérifie si l'utilisateur existe dans note base de donnée
+     // Vérifie si l'utilisateur existe dans notre base de donnée
      User.findOne({ email: req.body.email })
      .then(user => {
          if (!user) {
           // Erreur 401 Unauthorized
-             return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});// messsage volontairement vage pour ne pas divulger si un utilisateur est inscrit sur le site
+             return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});// messsage volontairement vague pour ne pas divulger si un utilisateur est inscrit sur le site
          }
          // Compare le mot de passe inscrit par l'utilisateur et celui de la base de donnée
          bcrypt.compare(req.body.password, user.password)
