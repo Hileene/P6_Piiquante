@@ -1,14 +1,17 @@
 //IMPORTATION FRAMEWORK/BASE DE DONNÉE
 const express = require('express');
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', true);
-const path = require('path');
-
-
-
 //IMPORTATION DES ROUTER
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
+mongoose.set('strictQuery', true);
+const dotenv = require('dotenv').config;
+const path = require('path');
+//Helmet aide a sécuriser les applications Express en configurant des en-têtes HTPP
+const app = express();
+const helmet= require('helmet');
+
+
 
 
 //CONNECTION DE MON API A MON CLUSTER MONGODB
@@ -20,7 +23,6 @@ mongoose.connect('mongodb+srv://aline_bb:MdJxgNYGVWdDY6n8@cluster0.jj6ina4.mongo
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-const app = express();
 
 // MIDDLEWARE GÉNÉRALE POUR TOUTES LES ROUTES (CORS)
 app.use((req, res, next) => {
@@ -32,6 +34,11 @@ app.use((req, res, next) => {
 
 //Pour analyser le corps de la requête
 app.use(express.json());
+
+app.use(helmet()); 
+
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
+
 
 //POUR ENREGISTER LES ROUTER
 app.use('/api/auth', userRoutes);
