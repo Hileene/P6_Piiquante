@@ -4,7 +4,7 @@ const fs = require('fs');
 
 
 
-//Ici on exporte un fonction appeler "createSauce" pour la création d'un objet sauce
+//Ici on exporte une fonction appeler "createSauce" pour la création d'un objet sauce
 //d'abord parser l'objet requête car l'ojet va nous etre envoyé sous forme json mais en chaîne de caractères
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);

@@ -19,7 +19,7 @@ exports.signup = ( req, res, next ) => {
           email: req.body.email,
           password: hash
         });
-        // Ensuite on enregiste le nouvel utilisateur dans la base de donnée
+        // Ensuite on enregistre le nouvel utilisateur dans la base de donnée
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !'}))
           .catch(error => {
