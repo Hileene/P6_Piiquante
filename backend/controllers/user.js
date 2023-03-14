@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 //IMPORTATION DU PACKAGE D'ENCODAGE DU TOKEN (PERMET DE CRÉER DES TOKEN ET DE LES VÉRIFIER)
 const jwt = require('jsonwebtoken');
 
+require ('dotenv').config();
+
 //IMPORTATION DU MODELE USER
 const User = require('../models/User');
 
@@ -50,11 +52,10 @@ exports.login = ( req, res, next ) => {
                  }
                  res.status(200).json({
                      userId: user._id,
-                     //token: "TOKEN"
                      //Permet d'authentifier une requête
                      token: jwt.sign(
                       { userId: user._id },
-                      'RANDOM_TOKEN_SECRET',
+                      `${process.env.JWT_TOKEN_KEY}`,
                       { expiresIn: '24h' }
                   )
                  });
