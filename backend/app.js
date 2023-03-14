@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 mongoose.set('strictQuery', true);
-const dotenv = require('dotenv').config;
+require('dotenv').config();
 const path = require('path');
 //Helmet aide a sécuriser les applications Express en configurant des en-têtes HTPP
 const app = express();
@@ -15,7 +15,7 @@ const helmet= require('helmet');
 
 
 //CONNECTION DE MON API A MON CLUSTER MONGODB
-mongoose.connect('mongodb+srv://aline_bb:MdJxgNYGVWdDY6n8@cluster0.jj6ina4.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
