@@ -45,10 +45,6 @@ La marque de condiments à base de piment Piiquante, veut développer une applic
 
 ## Technologies
 
-- HTML
-- Sass
-- Angular
-- TypeScript
 - JavaScript
 - Node JS
 - Express
