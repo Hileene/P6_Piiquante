@@ -35,7 +35,9 @@ Pour ce projet, ma mission en tant que développeuse back-end était de construi
 
 Je suis développeuse back-end indépendante et j'ai reçu offre de mission sur ma plateforme de freelance de la part d'un nouveau client.
 
-La marque de condiments à base de piment Piiquante, veut développer une application web de critique des sauces piquantes appelée "*Hot Takes*". Le responsable produit de la marque souhaite que la première version soit une « galerie de sauces » permettant aux utilisateurs de télécharger leurs sauces piquantes préférées et de liker ou disliker les sauces que d'autres partagent. Le front-end de l'application a été développé à l'aide d'Angular et a été précompilé après des tests internes, mais Piiquante a besoin d'un développeur back-end pour construire l'API.
+La marque de condiments à base de piment Piiquante, veut développer une application web de critique des sauces piquantes appelée "*Hot Takes*". Le responsable produit de la marque souhaite que la première version soit une « galerie de sauces » permettant aux utilisateurs de télécharger leurs sauces piquantes préférées et de liker ou disliker les sauces que d'autres partagent. 
+
+Le front-end de l'application a été développé à l'aide d'Angular et a été précompilé après des tests internes, mais Piiquante a besoin d'un développeur back-end pour construire l'API.
 
 ## Compétences Évaluées
 
@@ -66,7 +68,7 @@ modification ni ajout. Si nécessaire, utilisez une nouvelle Error().
 - Le mot de passe de l'utilisateur doit être haché.
 - L'authentification doit être renforcée sur toutes les routes sauce requises.
 - Les adresses électroniques dans la base de données sont uniques et un plugin Mongoose approprié est utilisé pour garantir leur unicité et signaler les erreurs.
-- La sécurité de la base de données MongoDB (à partir d'un service tel que MongoDB Atlas) ne doit pas empêcher l'application de se lancer sur la machine d'un utilisateur.
+- La sécurité de la base de données MongoDB ne doit pas empêcher l'application de se lancer sur la machine d'un utilisateur.
 - Un plugin Mongoose doit assurer la remontée des erreurs issues de la base de données.
 - Les versions les plus récentes des logiciels sont utilisées avec des correctifs de sécurité actualisés.
 - Le contenu du dossier images ne doit pas être téléchargé sur GitHub.
@@ -99,3 +101,87 @@ Retirez le code de l'application front-end du repository du projet et suivez les
 ---
 
 ## ENGLISH VERSION
+
+## Build a Secure REST API for a Hot Sauce Review Application
+
+*Project #6: Web Developer Training [OpenClassrooms](https://openclassrooms.com/en/paths/717-web-developer)*
+
+## Table of Contents
+
+- [Project Description](#project-description)
+- [Fictional Scenario](#fictional-scenario)
+- [Evaluated Skills](#evaluated-skills)
+- [Technologies](#technologies)
+- [API Specifications](#api-specifications)
+- [Security Requirements](#security-requirements)
+- [Installation](#installation)
+- [Built With](#developed-with)
+- [Author](#author)
+
+## Project Description
+
+For this project, my mission as a back-end developer was to build a secure API for a web application that reviews hot sauces called "*Hot Takes*".
+
+## Fictional Scenario
+
+I am an independent back-end developer and have received a freelance job offer from a new client through my freelance platform.
+
+The spicy condiment brand Piiquante wants to develop a web application for reviewing hot sauces called "*Hot Takes*". The product manager of the brand wants the first version to be a "sauce gallery" that allows users to upload their favorite hot sauces and like or dislike the sauces shared by others. 
+
+The front-end of the application has been developed using Angular and has been precompiled after internal testing, but Piiquante needs a back-end developer to build the API.
+
+## Evaluated Skills
+
+- 🗄️ Implement a logical data model in compliance with regulations
+- 🔒 Implement CRUD operations securely
+- 🛡️ Store data securely
+
+## Technologies
+
+- JavaScript
+- Node JS
+- Express
+- Mongoose
+
+## API Specifications
+
+- **API Errors:**
+  Any possible errors must be returned as they are produced, without modification or addition. If necessary, use a new Error().
+
+- **API Routes:**
+  - For sauces, all sauce routes must have authorization (the token is sent by the front-end with the authorization header: "Bearer <token>").
+  - Before the user can make changes to the sauce route, the code must check if the current userId matches the userId of the sauce.
+  - If the userId does not match, return "403: unauthorized request." This ensures that only the owner of the sauce can make changes to it.
+
+## Security Requirements
+
+- The user's password must be hashed.
+- Authentication must be reinforced on all required sauce routes.
+- Email addresses in the database are unique, and an appropriate Mongoose plugin is used to ensure their uniqueness and report errors.
+- The security of the MongoDB database must not prevent the application from launching on a user's machine.
+- A Mongoose plugin must handle errors from the database.
+- The latest versions of software are used with updated security patches.
+- The content of the images folder must not be uploaded to GitHub.
+
+## Installation
+
+Remove the front-end application code from the project repository and follow the
+following steps:
+1. Clone the repository
+2. Open a terminal (Linux/Mac) or command prompt/PowerShell (Windows)
+3. Run npm install from the project directory
+4. Run npm start
+5. Run the back-end on http://localhost:3000 only
+
+## Built With
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Node JS](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [MongoDB Atlas](https://www.mongodb.com/) 
+- [Postman](https://www.postman.com/) 
+- [GitHub](https://github.com/) 
+
+## Author
+- [@hileene](https://www.github.com/Hileene) 
+- [**Portfolio**](https://portfolio-test.com)
