@@ -9,7 +9,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 <img src="/backend/readme-images/powered-by-candy.svg" alt="For The Badge Candy image" />
 
-[Screenshots](#screenshots) - <a href="#version-française">README FR</a> - <a href="#english-version">README EN</a>
+<a href="#version-française">README FR</a> - <a href="#english-version">README EN</a>
 
 
 ---
